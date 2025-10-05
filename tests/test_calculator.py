@@ -15,7 +15,7 @@ def test_add_with_negative_numbers():
     assert add(0, 0) == 0  # 零也是边界
 
 
-# 3. 测试异常情况（输入非数字，这里我们期望它抛出TypeError）
+# 3. 测试异常情况（输入非数字，期望它抛出TypeError）
 def test_add_with_non_numbers():
     with pytest.raises(TypeError):
         add("hello", 3)
