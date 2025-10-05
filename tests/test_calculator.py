@@ -1,4 +1,4 @@
-from calculator import add
+from calculator import add, subtract
 import pytest
 
 
@@ -19,3 +19,10 @@ def test_add_with_negative_numbers():
 def test_add_with_non_numbers():
     with pytest.raises(TypeError):
         add("hello", 3)
+
+
+# 4. 测试减法功能
+def test_subtract_numbers():
+    assert subtract(5, 3) == 2
+    assert subtract(0, 0) == 0
+    assert subtract(-1, 1) == -2
