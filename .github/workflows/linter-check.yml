@@ -1,13 +1,13 @@
-name: Code Style Linter # workflow的名称
+name: CI Pipeline with Lint and Test 
 
-on: [push, pull_request] # 触发条件：在push代码或创建/更新Pull Request时运行
+on: [push, pull_request]
 
 jobs:
-  build: # 定义一个名为build的job
-    runs-on: ubuntu-latest # 指定运行在最新的Ubuntu系统上
+  build:
+    runs-on: ubuntu-latest
 
-    steps: # 定义具体的执行步骤
-      # 步骤1：将仓库的代码拉取到虚拟机环境中
+    steps:
+      # 步骤1：拉取代码
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -15,9 +15,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x' # 使用最新的3.x版本Python
+          python-version: '3.x'
 
-      # 步骤3：安装依赖（就是requirements.txt里的flake8）
+      # 步骤3：安装依赖
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
@@ -26,3 +26,8 @@ jobs:
       - name: Run flake8
         run: |
           flake8 . --count --show-source --statistics
+
+      # 步骤5：【新增】运行单元测试
+      - name: Run tests with pytest
+        run: |
+          pytest
